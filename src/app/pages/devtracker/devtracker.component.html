@@ -1,0 +1,130 @@
+<app-header [currentPage]='"tracker"'></app-header>
+<div id="page-container" class='container-fluid'>
+  <div class="row text-stretch">
+    <span id='entity-text'>
+      <a (click)='frame.show()'>Development Tracker</a>
+    </span>
+    <span id="period-text" >Sprint 12</span>
+  </div>
+  <div class="row color-figures m-b-30">
+    <div class="col-12 col-lg-3">
+      <div class="color-figure">
+          <span class='figure-text'>Total Items for this sprint</span>
+          <span class="figure-value">12</span>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="color-figure">
+          <span class='figure-text'>In Progress</span>
+          <span class="figure-value">3</span>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="color-figure">
+          <span class='figure-text'>Not Started</span>
+          <span class="figure-value">2</span>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="color-figure">
+          <span class='figure-text'>Escalations</span>
+          <span class="figure-value">1</span>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="compliance-figures">
+      <div class="text-stretch">
+        <h5>Development Summary</h5>
+        <a class='hyperlink' title='Add New Item' (click)='itemFlag = true;frame.show();'><mdb-icon style='font-size: 2rem;' fas icon="plus"></mdb-icon></a>
+      </div>
+      <div id='table-container'>
+        <table mdbTable class='table'>
+          <thead class="">
+            <tr>
+              <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr mdbTableCol *ngFor="let el of elements" [ngClass]='{"escalation": el.esc}'>
+              <td><a class='hyperlink' (click)='itemFlag = false;frame.show();'><mdb-icon fas icon="edit" class='m-r-5'></mdb-icon>{{el.id}}</a></td>
+              <td>{{el.status}}</td>
+              <td><div [mdbTooltip]="el.desc">{{el.desc}}</div></td>
+              <td>{{el.start}}</td>
+              <td>{{el.end}}</td>
+              <td>{{el.uat}}</td>
+              <td>{{el.esc === true ? "Yes" : "No"}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="addReqModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add / Update Requirement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- Extended default form grid -->
+      <form>
+        <!-- Grid row -->
+        <div class="form-row">
+          <!-- Default input -->
+          <div class="form-group col-6">
+            <label for="inputEmail4">Start Date</label>
+            <input mdbInput type="date" [disabled]='!itemFlag' class="form-control" id="inputEmail4" placeholder="Start Date">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-6">
+            <label for="inputPassword4">End Date</label>
+            <input mdbInput type="date" [disabled]='!itemFlag' class="form-control" id="inputEmail4" placeholder="End Date">
+          </div>
+          <div class="form-group col-12">
+            <label for="inputAddress">Description</label>
+            <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-6">
+            <label for="inputCity">UAT Date</label>
+            <input mdbInput type="date" [disabled]='!itemFlag' class="form-control" id="inputEmail4" placeholder="UAT Date">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-6" *ngIf='!itemFlag'>
+            <label for="inputCity">Revised UAT Date</label>
+            <input mdbInput type="date" class="form-control" id="inputEmail4" placeholder="UAT Date">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-6" *ngIf='!itemFlag'>
+            <label for="inputCity">Revised End Date</label>
+            <input mdbInput type="date" class="form-control" id="inputEmail4" placeholder="UAT Date">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-6 select-field">
+            <label for="inputZip">Status</label>
+            <select name="" id="">
+              <option value="New">Not Started</option>
+              <option value="InProgress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Abandoned">Abandoned</option>
+            </select>
+          </div>
+        </div>
+      </form>
+        <!-- Extended default form grid -->
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light yellow" aria-label="Close" *ngIf='!itemFlag' (click)="frame.hide()" mdbWavesEffect>Update</button>
+        <button mdbBtn color="default" class="waves-light yellow" aria-label="Close" *ngIf='itemFlag' (click)="frame.hide()" mdbWavesEffect>Add</button>
+        <button mdbBtn color="default" class="waves-light yellow" aria-label="Close" *ngIf='!itemFlag' (click)="frame.hide()" mdbWavesEffect>Delete</button>
+        <button mdbBtn color="default" class="waves-light yellow" aria-label="Close" (click)="frame.hide()" mdbWavesEffect>Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

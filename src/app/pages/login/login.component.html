@@ -1,0 +1,17 @@
+<div id="page-container">
+    <div class="header">
+        <img src="assets/images/ey_logo.png" />
+    </div>
+    <div class="body row">
+        <img src="assets/images/digigst_logo.png" alt="" class='m-b-10' />
+        <div class="input-field">
+            <input [(ngModel)]='username' type="text" #uname='ngModel' required placeholder="User name" />
+            <span *ngIf='uname.invalid && (uname.dirty || uname.touched)' class="error-text">Username is required</span>
+        </div>
+        <div class="input-field">
+            <input type="password" [(ngModel)]='password' #pwd='ngModel' required placeholder="Password" />
+            <span class="error-text" *ngIf='pwd.invalid && (pwd.dirty || pwd.touched)'>Password is required</span>
+        </div>
+        <a class="btn-default btn yellow" routerLink='../dashboard'>Login</a>
+    </div>
+</div>

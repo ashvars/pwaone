@@ -1,0 +1,45 @@
+@import 'src/vars.scss';
+
+::ng-deep mdb-navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .navbar {
+        min-height: 50px;
+        padding: 0 10px;
+        background: $dark_blue;
+
+        .navbar-brand {
+            height: 50px;
+            margin-right: 30px;
+            
+            img {
+                height: 100%;
+            }
+        }
+        .nav-item {
+            .nav-link {
+                padding: 0.5rem 0.5rem;
+                display: flex !important;
+                align-items: center;
+                height: 100%;
+    
+                #avatar-img {
+                    height: 40px;
+                }
+                #avatar-name {
+                    font-size: 12px;
+                    margin: 0 10px;
+                }
+            }
+            &.active {
+                .nav-link {
+                    color: $normal_yellow !important;
+                }
+            }
+        }
+    }
+}

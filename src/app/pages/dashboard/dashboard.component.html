@@ -1,0 +1,164 @@
+<app-header [currentPage]='"dashboard"'></app-header>
+<div id="page-container" class='container-fluid'>
+    <div class="row text-stretch">
+        <span id='entity-text'>
+          <a (click)='frame.show()'>{{selectedEntity || "Dashboard"}}</a>
+        </span>
+        <span id="period-text" >As On January 2020</span>
+    </div>
+    <div class="row color-figures m-b-30">
+        <div class="col-12 col-lg-3">
+          <div class="color-figure" *ngIf='!selectedEntity'>
+              <span class='figure-text'>Total Entities</span>
+              <span class="figure-value">47</span>
+          </div>
+          <div class="color-figure" *ngIf='selectedEntity'>
+            <span class='figure-text'>Total GSTINs</span>
+            <span class="figure-value">110</span>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3">
+          <div class="color-figure" *ngIf='!selectedEntity'>
+              <span class='figure-text'>GSTR-1 Filed</span>
+              <span class="figure-value">67,000+</span>
+          </div>
+          <div class="color-figure" *ngIf='selectedEntity'>
+            <span class='figure-text'>GSTR-1 Filed</span>
+            <span class="figure-value">2400+</span>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3">
+          <div class="color-figure" *ngIf='!selectedEntity'>
+              <span class='figure-text'>Invoices Processed & Submitted</span>
+              <span class="figure-value">110m+</span>
+          </div>
+          <div class="color-figure" *ngIf='selectedEntity'>
+            <span class='figure-text'>Invoices Processed & Submitted</span>
+            <span class="figure-value">650k+</span>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3">
+          <div class="color-figure" *ngIf='!selectedEntity'>
+              <span class='figure-text'>Liability Reported</span>
+              <span class="figure-value">1,25,000+ Cr</span>
+          </div>
+          <div class="color-figure" *ngIf='selectedEntity'>
+            <span class='figure-text'>Liability Reported</span>
+            <span class="figure-value">4,100+ Cr</span>
+          </div>
+        </div>
+    </div>
+    <div class="row m-b-30 hideOnMobile">
+      <div class="col-12 col-lg-4 m-b-15">
+        <div style="display: block">
+          <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="chart1Datasets"
+              [labels]="chartLabels"
+              [colors]="chart1Colors"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 m-b-15">
+        <div style="display: block">
+          <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="chart2Datasets"
+              [labels]="chartLabels"
+              [colors]="chart2Colors"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div style="display: block">
+          <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="chart3Datasets"
+              [labels]="chartLabels"
+              [colors]="chart3Colors"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="compliance-figures">
+                <h5>Month-wise Summary</h5>
+                <div class="">
+                  <table mdbTable *ngIf='!selectedEntity' class='table'>
+                    <thead class="">
+                      <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr mdbTableCol *ngFor="let el of elements">
+                        <td>{{el.id}}</td>
+                        <td>{{el.entities}}</td>
+                        <td><span>{{el.first}}</span><mdb-icon mdbTooltip="Upward Trend" *ngIf='el.trend === true' style='margin-left: 5px;color:#379541;' fas icon="arrow-up"></mdb-icon><mdb-icon mdbTooltip="Downward Trend" *ngIf='el.trend === false' style='margin-left: 5px;color:#f04c3e;' fas icon="arrow-down"></mdb-icon></td>
+                        <td>{{el.last}}</td>
+                        <td>{{el.handle}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table mdbTable *ngIf='selectedEntity' class='table'>
+                    <thead class="">
+                      <tr>
+                        <th *ngFor="let head of headElementsEntity" scope="col">{{head}} </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr mdbTableCol *ngFor="let el of elementsEntity">
+                        <td>{{el.id}}</td>
+                        <td>{{el.entities}}</td>
+                        <td><span style='width: 4.5rem;display: inline-block;'>{{el.first}}</span><mdb-icon mdbTooltip="Upward Trend" *ngIf='el.trend === true' style='margin-left: 5px;color:#379541;' fas icon="arrow-up"></mdb-icon><mdb-icon mdbTooltip="Downward Trend" *ngIf='el.trend === false' style='margin-left: 5px;color:#f04c3e;' fas icon="arrow-down"></mdb-icon></td>
+                        <td>{{el.last}}</td>
+                        <td>{{el.handle}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Select Entity</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5 row">
+          <div class="col-12">
+            <div class="select-field">
+                <select name="" id="" [(ngModel)]='selectedEntity'>
+                  <option value="">No Selection</option>
+                  <option value="Entity1">Demo Entity</option>
+                </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light yellow" aria-label="Close" (click)="frame.hide()" mdbWavesEffect>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

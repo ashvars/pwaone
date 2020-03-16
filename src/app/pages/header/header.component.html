@@ -1,0 +1,60 @@
+<!--Navbar-->
+<mdb-navbar #navbar SideClass="navbar navbar-expand-lg navbar-dark" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <img src="assets/images/eywhite_logo.png" />
+      <img src="assets/images/digigst_logo.png" alt="" />
+    </a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [ngClass]='{"active":activeLink === "dashboard"}'>
+          <a class="nav-link waves-light" (click)='redirectToPage(1,"../dashboard")' mdbWavesEffect>Compliance Dashboard<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" [ngClass]='{"active":activeLink === "tracker"}'>
+          <a class="nav-link waves-light" (click)='redirectToPage(2,"../devtracker")'  mdbWavesEffect>Development Tracker</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect></a>
+        </li>
+  
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Others<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">GSTIN Validator</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Org Hierarchy</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Manage Auth Token</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Ledgers</a>
+          </div>
+        </li>
+  
+      </ul>
+      <!-- Links -->
+  
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+        </li>
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <img id='avatar-img' src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0">
+            <span id="avatar-name">Welcome, Natasha Romanov</span>
+          </a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Configurations</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li>
+      </ul>
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->

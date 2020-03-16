@@ -1,0 +1,100 @@
+#period-text {
+    line-height: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+}
+#entity-text {
+    margin-right: 50px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+
+    a:last-of-type {
+        text-decoration: underline;
+        color: #0078db;
+    }
+    mdb-icon {
+        display: flex;
+        align-items: center;
+
+        ::ng-deep i {
+            font-size: 22px;
+            margin: 0 10px;
+            color: #888;
+        }
+    }
+}
+.color-figures {
+
+    & > div {
+        padding: 7.5px 15px;
+
+        .color-figure {
+            border-radius: 5px;
+            box-shadow: 1px 1px 4px 0px #ddd;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            background: rgb(255, 230, 0, 0.2);
+
+            span:first-child {
+                color: #333;
+                margin-bottom: 5px;
+                text-align: center;
+                font-weight: bold;
+            }
+            span:last-child {
+                font-weight: bold;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+        }
+        &:first-child .color-figure span:last-child {
+            color: #00a3ae;
+        }
+        &:nth-child(2) .color-figure span:last-child {
+            color: #379541;
+        }
+        &:nth-child(3) .color-figure span:last-child {
+            color: #f04c3e;
+        }
+        &:nth-child(4) .color-figure span:last-child {
+            color: #91278f;
+        }
+    }
+}
+::ng-deep #dashboard-carousel {
+    .carousel-indicators li {
+        background-color: #0078db;
+    }
+    .carousel-item {
+        height: 55vw;
+    }
+}
+@media all and (max-width: 992px) {
+    .table {
+        thead tr {
+            th:first-child, th:nth-child(3) {
+                width: 80px;
+            }
+        }
+    }
+    .color-figure {
+        justify-content: space-between !important;
+        min-height: auto !important;
+        flex-direction: row !important;
+        padding: 5px 10px !important;
+
+        span:first-child {
+            margin-bottom: 0 !important;
+        }
+    }
+}

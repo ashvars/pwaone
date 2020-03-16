@@ -1,0 +1,120 @@
+@import 'vars.scss';
+
+/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+html, body {
+    font-size: 14px;
+    margin: 0;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.fill-space {
+    flex: 1 1 auto;
+}
+.text-center {
+    justify-content: center !important;
+}
+.text-stretch {
+    justify-content: space-between;
+    display: flex;
+}
+.hyperlink {
+    color: #0078db !important;
+}
+.m-b-15 {
+    margin-bottom: 15px !important;
+}
+.m-b-30 {
+    margin-bottom: 30px !important;
+}
+.m-r-5 {
+    margin-right: 5px !important;
+}
+.showOnMobile {
+    display: none;
+}
+.input-field, .select-field {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    word-break: normal;
+
+    input[type=text], input[type=password], select {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        height: 35px;
+        padding: 0 5px;
+        width: 100%;
+    }
+    span.error-text {
+        color: #f04c3e;
+        font-size: 0.8em;
+        margin-top: 5px;
+    }
+}
+.primary-btn {
+    background: #ffe600;
+    border-radius: 3px;
+    min-width: auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+#page-container {
+    //height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding: 60px 15px 15px 15px;
+}
+
+/* mdb custom styles */
+div {
+    mdb-card {
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .card-title {
+            display: flex;
+        }
+    }
+}
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:focus {
+    &.yellow {
+        background-color: $normal_yellow !important;
+        color: $almost_black !important;
+    }
+}
+.table thead {
+
+    th {
+        font-weight: bold;
+        background-color: $light_violet;
+        position: sticky;
+        top: 50px;
+        border-bottom: 2px solid #ddd;
+        border-top: 2px solid #ddd !important;
+        vertical-align: middle;
+    }
+}
+.modal {
+    margin: 0 !important;
+}
+@media all and (max-width: 992px) {
+    .showOnMobile {
+        display: block;
+    }
+    .hideOnMobile {
+        display: none;
+    }
+}

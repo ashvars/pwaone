@@ -1,0 +1,29 @@
+.m-b-10 {
+    margin-bottom: 10px;
+}
+#page-container {
+    padding-top: 10px;
+    height: 100vh;
+
+    .header {
+        img {
+            width: 20vw;
+            max-width: 80px;
+        }
+    }
+    .body {
+
+        .input-field {
+            width: 200px;
+        }
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        img {
+            width: 40vw;
+            max-width: 200px;
+        }
+    }
+}
